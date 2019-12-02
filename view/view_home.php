@@ -11,40 +11,39 @@
             body {
                 font-family: 'Kanit', sans-serif;
                 padding-top: 2rem;
+                background-color: black;
             }
         </style>
     </head>
     <body>
         <div class="container-fluid">
-            <h1><?php echo $var['HEADERNAME']; ?></h1>
+            <h1 style="color: white;"><?php echo $var['HEADERNAME']; ?></h1>
             <br>
             <div class="row">
                 <div class="col-sm">
-                    <div class="card">
+                    <div style="background-color: indigo;" class="card">
                         <div class="card-body">
                             <form action="" method="post">
                                 <div class="form-group">
-                                    <label>URL</label>
-                                    <input name="url" type="text" class="form-control" placeholder="--url--" required="">
+                                    <label style="color: white;">URL</label>
+                                    <input style="background-color: white;" name="url" type="text" class="form-control" placeholder="" required="">
                                 </div>
-                                <button type="submit" class="btn btn-primary">GET</button>
+                                <button type="submit" class="btn btn-danger">GET</button>
                                 <a class="btn btn-light" href="<?php echo $var['BASEURL'] . '/index.php/home'; ?>">CLEAR</a>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php if (isset($var['result'])): ?>
+            <?php if (isset($var['RESULT']) && $var['RESULT'] !== ''): ?>
                 <?php //print_r($var['result']); ?>
                 <br>
                 <div class="row">
                     <div class="col-sm">
-                        <div class="card">
+                        <div style="background-color: black;" class="card">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <textarea readonly="" class="form-control" rows="10">
-                                        <?php print_r($var['result']); ?>
-                                    </textarea>
+                                    <?php print_r($var['RESULT']); ?>
                                 </div>
                             </div>
                         </div>
