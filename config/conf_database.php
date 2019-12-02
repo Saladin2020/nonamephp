@@ -3,10 +3,10 @@
 /* @author Saladin */
 /* NONAME FRAMEWORK BUILD BY ME */
 $DB['MASTER'] = array(
-    'HOSTNAME' => '172.16.0.10',
-    'USERNAME' => 'yingo',
-    'PASSWORD' => 'Yingo96180',
-    'DATABASE' => 'hos',
+    'HOSTNAME' => 'localhost',
+    'USERNAME' => 'root',
+    'PASSWORD' => '',
+    'DATABASE' => 'noname',
 );
 
 $DB['SLAVE_1'] = array(
