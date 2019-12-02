@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php echo $var['title']; ?></title>
+        <title><?php echo $var['TITLE']; ?></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="<?php echo $var['BASEURL'] . '/asset/images/zip.ico'; ?>">
@@ -16,7 +16,7 @@
     </head>
     <body>
         <div class="container-fluid">
-            <h1>43 Files Export</h1>
+            <h1><?php echo $var['HEADERNAME']; ?></h1>
             <br>
             <div class="row">
                 <div class="col-sm">
@@ -24,22 +24,10 @@
                         <div class="card-body">
                             <form action="" method="post">
                                 <div class="form-group">
-                                    <label>Hospital code</label>
-                                    <input name="hoscode" type="text" class="form-control" placeholder="Hospital code" required="">
+                                    <label>URL</label>
+                                    <input name="url" type="text" class="form-control" placeholder="--url--" required="">
                                 </div>
-                                <div class="form-group">
-                                    <label>ตั้งแต่</label>
-                                    <input name="startdate" type="date" class="form-control" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>ถึง</label>
-                                    <input name="enddate" type="date" class="form-control" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>Doctor code</label>
-                                    <input name="doctorcode" type="text" class="form-control" placeholder="Doctor code">
-                                </div>
-                                <button type="submit" class="btn btn-primary">EXPORT</button>
+                                <button type="submit" class="btn btn-primary">GET</button>
                                 <a class="btn btn-light" href="<?php echo $var['BASEURL'] . '/index.php/home'; ?>">CLEAR</a>
                             </form>
                         </div>
