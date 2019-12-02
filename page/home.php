@@ -20,7 +20,7 @@ if ($url != '') {
         echo $e;
     }
 
-   // print_r($html);exit();
+    // print_r($html);exit();
     $splitURL = explode('/', $url);
     if (strtolower($splitURL[0]) === "http:" || strtolower($splitURL[0]) === "https:") {
         $url = strtolower($splitURL[0]) . "//" . strtolower($splitURL[2]);
@@ -34,15 +34,29 @@ $dom = new DOMDocument();
 @$dom->loadHTML($html);
 $newtag = '';
 $i = 1;
+$des = 'download/';
+
 foreach ($dom->getElementsByTagName('img') as $link) {
     if (explode('/', $link->getAttribute('src'))[0] !== "http:" && explode('/', $link->getAttribute('src'))[0] !== "https:") {
         $newtag .= '<img width="100" src="' . $url . $link->getAttribute('src') . '"/>';
+        $file_info = new finfo(FILEINFO_MIME_TYPE);
+        $mime_type = $file_info->buffer(file_get_contents($url . $link->getAttribute('src')));
+        echo $mime_type;
+        //$fp = fopen($des . $i, "w+") or die("Unable to open file!");
+        // fwrite($fp, file_get_contents($link->getAttribute('src')));
+        //fclose($fp);
     } else {
         $newtag .= '<img width="100" src="' . $link->getAttribute('src') . '"/>';
+        $file_info = new finfo(FILEINFO_MIME_TYPE);
+        $mime_type = $file_info->buffer(file_get_contents($link->getAttribute('src')));
+        echo $mime_type;
+// $fp = fopen($des . $i, "w+") or die("Unable to open file!");
+        // fwrite($fp, file_get_contents($link->getAttribute('src')));
+        // fclose($fp);
     }
-    if($i % 20 == 0){
+    if ($i % 20 == 0) {
         $newtag .= "</br>";
-    }else{
+    } else {
         $newtag .= "&nbsp;&nbsp;";
     }
     $i++;
