@@ -10,6 +10,34 @@ class managefile {
         return $fileset;
     }
 
+    public static function typefile($data) {
+        $mime = array(
+            // images
+            'image/png' => 'png',
+            'image/jpeg' => 'jpe',
+            'image/jpeg' => 'jpeg',
+            'image/jpeg' => 'jpg',
+            'image/gif' => 'gif',
+            'image/bmp' => 'bmp',
+            'image/vnd.microsoft.icon' => 'ico',
+            'image/tiff' => 'tiff',
+            'image/tiff' => 'tif',
+            'image/svg' => 'svg',
+            'image/svg+xml' => 'svg',
+            'image/svg+xml' => 'svgz',
+            'text/html' => 'svg'
+        );
+        $file_info = new finfo(FILEINFO_MIME_TYPE);
+        $mime_type = $file_info->buffer($data);
+        return $mime[$mime_type];
+    }
+
+    public static function writefile($filename, $data) {
+        $fp = fopen($filename, "w+") or die("Unable to open file!");
+        fwrite($fp, $data);
+        fclose($fp);
+    }
+
     public static function readfile($filepath) {
         $data = '';
         $fp = fopen($filepath, "r") or die("Unable to open file!");
