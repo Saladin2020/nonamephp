@@ -2,68 +2,47 @@
 
 /* @author Saladin */
 /* NONAME FRAMEWORK BUILD BY ME */
-ini_set('memory_limit', -1);
-ini_set('max_execution_time', 0);
-$url = method::post('url');
-$html = '';
-if ($url != '') {
-    try {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        //curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        //curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $html = curl_exec($ch);
-        curl_close($ch);
-    } catch (Exception $e) {
-        echo $e;
-    }
 
-    // print_r($html);exit();
-    $splitURL = explode('/', $url);
-    if (strtolower($splitURL[0]) === "http:" || strtolower($splitURL[0]) === "https:") {
-        $url = strtolower($splitURL[0]) . "//" . strtolower($splitURL[2]) . '/';
-    } else {
-        $url = "http://" . strtolower($splitURL[0]) . '/';
-    }
+$sess = session::load();
+if ($sess->get('ALLOW') === "PASS") {
+    redirect::page($ROUTE['BASEURL'], 'home');
+}
+if ($sess->get('TOKEN') === "") {
+    $sess->set('TOKEN', $TOKEN['LOGIN']);
 }
 
+$user = method::post('username');
+$pass = method::post('password');
+$token = method::post('token');
+$result = '';
 
-$dom = new DOMDocument();
-@$dom->loadHTML($html);
-$newtag = '';
-$i = 1;
+if ($user != '' && $pass != '' && $sess->get('TOKEN') === $token) {
 
-$folder = 'FECTH_' . date('Ymshis');
-$des = 'download/';
-managefile::createdirectory($folder);
-foreach ($dom->getElementsByTagName('img') as $link) {
-    if (explode('/', $link->getAttribute('src'))[0] !== "http:" && explode('/', $link->getAttribute('src'))[0] !== "https:") {
-        $newtag .= '<img width="100" src="' . $url . $link->getAttribute('src') . '"/>';
-        $typeformat = managefile::typefile(file_get_contents($url . $link->getAttribute('src')));
-        managefile::writefile($folder . '/' . $i . '.' . $typeformat, file_get_contents($url . $link->getAttribute('src')));
+    $conn = database::load($DB['MASTER']);
+
+    $sql_statement = "SELECT *"
+            . " FROM user"
+            . " WHERE 1"
+            . " AND username='" . $user . "'"
+            . " AND pass='" . md5($pass) . "'";
+    $q = $conn->query($sql_statement, 'NAME');
+    if (count($q) > 0) {
+        $sess->set('ALLOW', 'PASS');
+        $sess->set('USERNAME', $q [0]['username']);
+        $sess->set('FNAME', $q [0]['fname']);
+        $sess->set('LNAME', $q [0]['lname']);
+        redirect::page($ROUTE['BASEURL'], 'home');
     } else {
-        $newtag .= '<img width="100" src="' . $link->getAttribute('src') . '"/>';
-        $typeformat = managefile::typefile(file_get_contents($link->getAttribute('src')));
-        managefile::writefile($folder . '/' . $i . '.' . $typeformat, file_get_contents($link->getAttribute('src')));
+        $result = "USERNAME/PASSWORD INCORRECT";
     }
-    if ($i % 20 == 0) {
-        $newtag .= "</br>";
-    } else {
-        $newtag .= "&nbsp;&nbsp;";
-    }
-    $i++;
 }
-managefile::zipfile($folder);
-managefile::deletefiles($folder);
-managefile::movefile($folder . '.zip', $des . $folder . '.zip');
 
 $data = array(
-    'TITLE' => 'Fecth data',
+    'TITLE' => 'yNotification',
     'BASEURL' => $ROUTE['BASEURL'],
-    'HEADERNAME' => 'Fecth data',
-    'RESULT' => $newtag
+    'HEADERNAME' => 'yNotification',
+    'TOKEN' => $sess->get('TOKEN'),
+    'RESULT' => $result
 );
-view::render('home', $data);
+
+view::renderOnLayout(array('login'), 's001', $data);

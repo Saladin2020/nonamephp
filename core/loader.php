@@ -5,12 +5,13 @@
 
 $directorys = array(
     'config/',
+    'helper/',
 );
 foreach ($directorys as $directory) {
     if (is_dir($directory)) {
         if ($dh = opendir($directory)) {
             while (($file = readdir($dh)) !== false) {
-                if ($file != "." && $file != "..") {
+                if ($file !== "." && $file !== ".." && explode('.', $file)[1] === "php") {
                     require_once($directory . $file);
                 }
             }

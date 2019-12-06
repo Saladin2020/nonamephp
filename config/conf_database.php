@@ -6,12 +6,12 @@ $DB['MASTER'] = array(
     'HOSTNAME' => 'localhost',
     'USERNAME' => 'root',
     'PASSWORD' => '',
-    'DATABASE' => 'noname',
+    'DATABASE' => 'sn',
 );
 
-$DB['SLAVE_1'] = array(
+$DB['HOSxP'] = array(
     'HOSTNAME' => 'localhost',
-    'USERNAME' => 'username',
-    'PASSWORD' => 'password',
-    'DATABASE' => 'sn',
+    'USERNAME' => 'root',
+    'PASSWORD' => '',
+    'DATABASE' => 'hostest',
 );

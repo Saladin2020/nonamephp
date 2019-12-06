@@ -39,4 +39,8 @@ class database {
         }
     }
 
+    public function insertQuery($sql_statement) {
+        return $this->pdo->exec($sql_statement);
+    }
+
 }
