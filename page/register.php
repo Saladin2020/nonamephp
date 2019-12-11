@@ -32,7 +32,7 @@ if ($sess->get('LINE_CODE') === "" || $sess->get('LINE_STATE') === "" || $sess->
         if ($patienttoken->{'access_token'} !== null) {
             $conn_master = database::load($DB['MASTER']);
             $sql_master = "INSERT INTO patient (cid, hn, line_token) VALUES ('" . $cid . "', '" . $hn . "', '" . $patienttoken->{'access_token'} . "')";
-            $q_master = $conn_master->insertQuery($sql_master);
+            $q_master = $conn_master->execQuery($sql_master);
             $sess->clear_value();
             //$sess->clear_all();
             $sess->set('LINE_NOTIFY_COMPLTE', 'SUCCESS');

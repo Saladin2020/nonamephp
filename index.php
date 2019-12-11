@@ -9,7 +9,12 @@ ini_set('max_execution_time', 0);
 require './core/loader.php';
 $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 if (count($uriSegments) >= 4) {
-    $page = './page/' . $uriSegments[3] . '.php';
+    $tmp = "";
+    for ($i = 3; $i < count($uriSegments); $i++) {
+        $tmp .= "/" . $uriSegments[$i];
+    }
+    $tmp = trim($tmp, "/");
+    $page = './page/' . $tmp . '.php';
     if (file_exists($page)) {
         require $page;
     } else {

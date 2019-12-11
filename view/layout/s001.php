@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="<?php echo $var['BASEURL'] . '/asset/fonts/ionicons.min.css'; ?>">
         <link rel="stylesheet" href="<?php echo $var['BASEURL'] . '/asset/fonts/fontawesome5-overrides.min.css'; ?>">
         <link rel="stylesheet" href="<?php echo $var['BASEURL'] . '/asset/fonts/kanit.css'; ?>">
+        <link rel="stylesheet" href="<?php echo $var['BASEURL'] . '/asset/css/sweetalert.css'; ?>">
+        <script src="<?php echo $var['BASEURL'] . '/asset/js//sweetalert.min.js'; ?>"></script>
         <style>
             body {
                 font-family: 'Kanit', sans-serif;
