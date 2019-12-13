@@ -43,4 +43,4 @@ $data = array(
     'PAGENUMBER' => $paginationShow,
     'STATEFIND' => $condfind,
 );
-view::renderOnLayout(array('nav', 'menu', 'patientmanager', 'footer'), 's001', $data);
+view::renderCRUDOnLayout(array('nav', 'menu', 'crud/vread', 'footer'), 's001', $data);

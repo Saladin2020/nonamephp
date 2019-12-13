@@ -1,9 +1,32 @@
 <?php
 
 $conn = database::load($DB['MASTER']);
-$data = array(
-    'cid' => '1960500165635',
-    'hn' => '2019-12-10',
-    'line_token' => 'hello12358'
+$tablename = 'patient';
+$result['NAMEHEAD'] = array(
+    'cid' => 'เลขบัตรปรชาชน',
+    'hn' => 'hn',
+    'line_token' => 'LINE TOKEN'
 );
-echo crud::create($conn, 'patient', $data);
+
+
+$result['NAMEPOST'] = crud::colstatus($conn, $tablename);
+if (method::postAllOrigin() != null) {
+    $namepost = array();
+    foreach (method::postAllOrigin() as $key => $value) {
+        $namepost[$key] = $value;
+    }
+    $result['STATUSINSERT'] = crud::create($conn, $tablename, $namepost);
+}
+
+
+
+
+$data = array(
+    'TITLE' => 'yNotification',
+    'BASEURL' => $ROUTE['BASEURL'],
+    'HEADERNAME' => 'yNotification',
+    'CRUDROUTE' => $ROUTE['BASEURL'] . '/index.php/patientmanager/',
+    'RESULT' => $result,
+    'SIDEBAR' => $MENU['SIDEBAR']
+);
+view::renderCRUDOnLayout(array('nav', 'menu', 'crud/vcreate', 'footer'), 's001', $data);

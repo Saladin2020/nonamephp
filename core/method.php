@@ -13,6 +13,10 @@ class method {
         return (isset($_GET[$name]) != '') ? $_GET[$name] : '';
     }
 
+    public static function postAllOrigin() {
+        return $_POST;
+    }
+
     public static function postAll() {
         $arr = array();
         $i = 0;

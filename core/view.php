@@ -26,4 +26,18 @@ class view {
         require_once 'view/layout/' . $layout . '.php';
     }
 
+    public static function renderCRUDOnLayout($views, $layout, $var = '') {
+        $section = array();
+        $i = 0;
+        
+        foreach ($views as $view) {
+            ob_start();
+            require_once 'view/' . ((count(explode("/", $view)) > 1) ? "" : "view_") . $view . '.php';
+            $section[$i] = ob_get_contents();
+            ob_clean();
+            $i++;
+        }
+        require_once 'view/layout/' . $layout . '.php';
+    }
+
 }

@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/noname/view/view_patientmanager.php</file>
+            <file>file:/C:/xampp/htdocs/noname/view/crud/vupdate.php</file>
+            <file>file:/C:/xampp/htdocs/noname/page/patientmanager/up.php</file>
             <file>file:/C:/xampp/htdocs/noname/core/crud.php</file>
-            <file>file:/C:/xampp/htdocs/noname/page/patientmanager/read.php</file>
+            <file>file:/C:/xampp/htdocs/noname/page/patientmanager/update.php</file>
         </group>
     </open-files>
 </project-private>
