@@ -2,7 +2,7 @@
 
 define('LINE_API', "https://notify-api.line.me/api/notify");
 
-$token = "RU96QpRQvoRL1v9B4LI6hke06VbU93mDSUuJyAyBPxO"; //ใส่Token ที่copy เอาไว้
+$token = "3gr0PwRYdaEDanfdWzDyhP1ZkaBPIjtCzTLs5jvZ4sU"; //ใส่Token ที่copy เอาไว้
 $str = "ทำไรอยู่?"; //1000
 
 $res = notify_message($str, $token);

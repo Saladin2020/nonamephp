@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of crud
- *
- * @author Saladin
- */
 class crud {
 
     public static function create($conn, $tbl, $data) {
@@ -72,7 +61,7 @@ class crud {
                 . " SET " . $col . ""
                 . " WHERE "
                 . $cond;
-        echo $sqlUpdate;
+        //echo $sqlUpdate;
         if ($conn->execQuery($sqlUpdate)) {
             return "Complete";
         } else {

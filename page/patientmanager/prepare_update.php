@@ -5,23 +5,19 @@ if ($sess->get('ALLOW') !== "PASS") {
     redirect::page($ROUTE['BASEURL'], 'login');
 }
 
-//prepare
 $projectfolder = 'patientmanager';
 $conn = database::load($DB['MASTER']);
 $tablename = 'patient';
-$rowFetch = 25;
-
-$result['COLHEAD'] = array(
-    'เลขบัตรปรชาชน',
-    'hn',
-    'LINE TOKEN'
+$result['NAMEHEAD'] = array(
+    'cid' => 'เลขบัตรปรชาชน',
+    'hn' => 'hn',
+    'line_token' => 'LINE TOKEN'
 );
 
-builderCRUD::READ(
+builderCRUD::PREPARE_UPDATE(
         $projectfolder,
         $conn,
         $tablename,
-        $rowFetch,
         $result,
         $ROUTE,
         $MENU

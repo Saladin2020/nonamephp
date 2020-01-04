@@ -39,7 +39,7 @@
                                 <td><?php echo $data[$col['Field']]; ?></td>
                             <?php endforeach; ?>
                             <td>
-                                <form method="POST" action="<?php echo $var['CRUDROUTE'] . 'update'; ?>">
+                                <form method="POST" action="<?php echo $var['CRUDROUTE'] . 'prepare_update'; ?>">
                                     <?php foreach ($var['RESULT']['COLSTATUS'] as $col): ?>
                                         <?php if ($col['Key'] === 'PRI'): ?>
                                             <input type="hidden" name="<?php echo $col['Field']; ?>" value="<?php echo $data[$col['Field']]; ?>">

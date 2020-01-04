@@ -9,7 +9,7 @@
                     <?php echo $var['RESULT']['STATUSINSERT']; ?>
                 </div>
             <?php endif; ?>
-            <form method="POST" action="<?php echo $var['CRUDROUTE'] . 'up'; ?>">
+            <form method="POST" action="<?php echo $var['CRUDROUTE'] . 'update'; ?>">
                 <?php foreach ($var['RESULT']['NAMEPOST'] as $key => $value): ?>
                     <div class="form-group">
                         <label><?php echo $var['RESULT']['NAMEHEAD'][$value['Field']]; ?></label>

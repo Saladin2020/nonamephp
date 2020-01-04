@@ -1,14 +1,14 @@
 <?php
 
-$conn = database::load($DB['MASTER']);
-if (method::postAll() != null) {
-    $condition = "";
-    foreach (method::postAll() as $value) {
-        $condition .= " AND " . $value;
-    }
-    $condition = trim($condition, " AND");
-    echo crud::delete($conn, 'patient', $condition);
+$sess = session::load();
+if ($sess->get('ALLOW') !== "PASS") {
+    redirect::page($ROUTE['BASEURL'], 'login');
 }
-redirect::page($ROUTE['BASEURL'], 'patientmanager/read');
 
-
+$projectfolder = 'patientmanager';
+$conn = database::load($DB['MASTER']);
+builderCRUD::DELETE(
+        $projectfolder,
+        $conn,
+        $ROUTE
+);

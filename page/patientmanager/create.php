@@ -1,5 +1,11 @@
 <?php
 
+$sess = session::load();
+if ($sess->get('ALLOW') !== "PASS") {
+    redirect::page($ROUTE['BASEURL'], 'login');
+}
+
+$projectfolder = 'patientmanager';
 $conn = database::load($DB['MASTER']);
 $tablename = 'patient';
 $result['NAMEHEAD'] = array(
@@ -8,25 +14,11 @@ $result['NAMEHEAD'] = array(
     'line_token' => 'LINE TOKEN'
 );
 
-
-$result['NAMEPOST'] = crud::colstatus($conn, $tablename);
-if (method::postAllOrigin() != null) {
-    $namepost = array();
-    foreach (method::postAllOrigin() as $key => $value) {
-        $namepost[$key] = $value;
-    }
-    $result['STATUSINSERT'] = crud::create($conn, $tablename, $namepost);
-}
-
-
-
-
-$data = array(
-    'TITLE' => 'yNotification',
-    'BASEURL' => $ROUTE['BASEURL'],
-    'HEADERNAME' => 'yNotification',
-    'CRUDROUTE' => $ROUTE['BASEURL'] . '/index.php/patientmanager/',
-    'RESULT' => $result,
-    'SIDEBAR' => $MENU['SIDEBAR']
+builderCRUD::CREATE(
+        $projectfolder,
+        $conn,
+        $tablename,
+        $result,
+        $ROUTE,
+        $MENU
 );
-view::renderCRUDOnLayout(array('nav', 'menu', 'crud/vcreate', 'footer'), 's001', $data);
