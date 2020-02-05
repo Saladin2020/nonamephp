@@ -10,10 +10,10 @@ $DB['MASTER'] = array(
 );
 
 $DB['HOSxP'] = array(
-    'HOSTNAME' => '172.16.0.10',
-    'USERNAME' => 'yingo',
-    'PASSWORD' => 'Yingo96180',
-    'DATABASE' => 'hos',
+    'HOSTNAME' => '',
+    'USERNAME' => '',
+    'PASSWORD' => '',
+    'DATABASE' => '',
 );
 
 $DB['HOSxpTEST'] = array(
